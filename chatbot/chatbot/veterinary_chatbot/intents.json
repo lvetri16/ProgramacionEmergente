@@ -1,0 +1,213 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": [
+        "Hola", "Buenos días", "Buenas tardes", "Buenas noches",
+        "¿Cómo estás?", "Hola, necesito ayuda", "Hey", "Saludos",
+        "Hola buenas", "Buen día", "Hola, buen día"
+      ],
+      "responses": [
+        "¡Hola! Soy el asistente virtual de la veterinaria. ¿En qué puedo ayudarte?",
+        "¡Buen día! ¿Cómo puedo asistirte hoy?",
+        "¡Hola! Estoy aquí para ayudarte con tu mascota. ¿En qué necesitas ayuda?"
+      ]
+    },
+    {
+      "tag": "despedida",
+      "patterns": [
+        "Adiós", "Hasta luego", "Gracias, eso es todo", "Nos vemos",
+        "Chao", "Bye", "Hasta pronto", "Me voy", "Terminamos",
+        "Gracias por la ayuda", "Perfecto, gracias"
+      ],
+      "responses": [
+        "¡Hasta luego! Cuida mucho a tu mascota 🐾",
+        "¡Que tengas un buen día! No dudes en consultarnos si necesitas algo más",
+        "¡Adiós! Recuerda que estamos aquí para cuidar de tu mascota",
+        "¡Hasta pronto! Esperamos verte nuevamente"
+      ]
+    },
+    {
+      "tag": "horario",
+      "patterns": [
+        "¿Cuál es su horario?", "¿A qué hora abren?", "¿Cuándo cierran?",
+        "Horario de atención", "¿Están abiertos ahora?", "¿Abrén los fines de semana?",
+        "¿Qué días atienden?", "Horario de la veterinaria",
+        "¿Atienden los domingos?", "¿Hasta qué hora están abiertos?"
+      ],
+      "responses": [
+        "Nuestro horario es: Lunes a Viernes de 8:00 AM a 6:00 PM, Sábados de 9:00 AM a 2:00 PM",
+        "Atención: Lunes a Viernes 8:00-18:00, Sábados 9:00-14:00. Domingos cerrado",
+        "Estamos abiertos de Lunes a Viernes de 8am a 6pm y Sábados de 9am a 2pm"
+      ]
+    },
+    {
+      "tag": "emergencia",
+      "patterns": [
+        "Es una emergencia", "Mi mascota está grave", "Necesito ayuda urgente",
+        "¿Tienen servicio de emergencia?", "Mi perro se accidentó",
+        "Mi gato está muy mal", "Urgencia veterinaria", "Ayuda inmediata",
+        "Mi mascota se envenenó", "Sangrado urgente", "No puede respirar"
+      ],
+      "responses": [
+        "🚑 PARA EMERGENCIAS: Llama inmediatamente al 555-EMERGENCIA. Atendemos urgencias 24/7",
+        "¡Emergencia! Contacta nuestro servicio de urgencias al 555-EMERGENCIA. Estamos disponibles 24 horas",
+        "Para casos críticos: Teléfono de emergencias 555-EMERGENCIA. Atendemos inmediatamente"
+      ]
+    },
+    {
+      "tag": "vacunacion_perros",
+      "patterns": [
+        "¿Qué vacunas necesita un perro?", "Vacunas para perros", "Vacunación canina",
+        "Esquema de vacunas perro", "¿Cuándo vacunar a mi cachorro?",
+        "Vacunas obligatorias perros", "Refuerzos vacunales perros",
+        "¿Qué vacunas son necesarias para perros?", "Calendario vacunal canino"
+      ],
+      "responses": [
+        "Para perros recomendamos: Vacuna múltiple (6-8 semanas), Refuerzo múltiple (cada 3-4 semanas hasta 16 semanas), Antirrábica (a los 6 meses), y opcionalmente Tos de las perreras. Agenda una cita para evaluación específica",
+        "Esquema canino: Múltiple a las 6-8 semanas, refuerzos mensuales hasta 4 meses, antirrábica a los 6 meses. ¿Tu perro es cachorro o adulto?"
+      ]
+    },
+    {
+      "tag": "vacunacion_gatos",
+      "patterns": [
+        "¿Qué vacunas necesita un gato?", "Vacunas para gatos", "Vacunación felina",
+        "Esquema de vacunas gato", "¿Cuándo vacunar a mi gatito?",
+        "Vacunas obligatorias gatos", "Triple felina",
+        "¿Qué vacunas son necesarias para gatos?", "Calendario vacunal felino"
+      ],
+      "responses": [
+        "Para gatos: Triple felina (8 semanas), Leucemia felina (9 semanas), Refuerzo triple (12 semanas), Antirrábica (6 meses). ¿Tu gato sale al exterior?",
+        "Esquema felino: Triple felina a las 8 y 12 semanas, leucemia felina si sale al exterior, antirrábica a los 6 meses"
+      ]
+    },
+    {
+      "tag": "cita",
+      "patterns": [
+        "Quiero agendar cita", "Necesito una cita", "¿Cómo saco cita?",
+        "Agendar consulta", "Quiero pedir cita", "Reservar hora",
+        "¿Puedo agendar una consulta?", "Necesito ver al veterinario",
+        "Quiero llevar a mi mascota", "Cita para revisión"
+      ],
+      "responses": [
+        "Para agendar cita puedes: Llamar al 555-CITAS, visitar nuestra web, o venir personalmente. ¿Prefieres mañana o tarde?",
+        "Puedes agendar llamando al 555-CITAS o en veterinariamascotasfelices.com. ¿Qué tipo de consulta necesitas?"
+      ]
+    },
+    {
+      "tag": "precios",
+      "patterns": [
+        "¿Cuánto cuesta una consulta?", "Precios", "¿Qué tarifas tienen?",
+        "Costo de vacunas", "Precio de consulta", "¿Es caro?",
+        "Tarifas veterinarias", "¿Cuánto vale una vacuna?",
+        "Precio de desparasitación", "Costos de servicios"
+      ],
+      "responses": [
+        "Consulta general: $50, Vacunas: $30-60 según tipo, Desparasitación: $25-40. Te recomendamos agenda cita para evaluación precisa",
+        "Nuestros precios: Consulta $50, Vacunas desde $30, Desparasitación desde $25. ¿Qué servicio específico te interesa?"
+      ]
+    },
+    {
+      "tag": "alimentacion",
+      "patterns": [
+        "¿Qué debo darle de comer?", "Alimentación para cachorro",
+        "Comida para gatos", "¿Cuántas veces al día debe comer?",
+        "Alimento recomendado", "Dieta para mascotas",
+        "¿Qué marca de comida recomiendan?", "Alimentación saludable"
+      ],
+      "responses": [
+        "La alimentación depende de la edad, raza y salud de tu mascota. Cachorros: 3-4 veces al día, Adultos: 2 veces. Recomendamos alimento premium según necesidades específicas",
+        "Te sugerimos alimento balanceado premium. Cachorros necesitan más frecuencia de alimentación. ¿Qué tipo de mascota tienes?"
+      ]
+    },
+    {
+      "tag": "sintomas",
+      "patterns": [
+        "Mi perro vomita", "Mi gato no come", "Tiene diarrea",
+        "Está decaído", "Tose mucho", "Tiene fiebre",
+        "Se rasca mucho", "Cojea", "Tiene los ojos rojos",
+        "Está estornudando", "No bebe agua"
+      ],
+      "responses": [
+        "Estos síntomas pueden indicar diferentes condiciones. Te recomiendo agendar una consulta para evaluación profesional. ¿Desde cuándo presenta estos síntomas?",
+        "Es importante que un veterinario evalúe esos síntomas. ¿Podrías traer a tu mascota para examen? Mientras, manténla hidratada"
+      ]
+    },
+    {
+      "tag": "desparasitacion",
+      "patterns": [
+        "¿Cada cuánto desparasitar?", "Desparasitación interna",
+        "Antiparasitarios", "¿Qué desparasitante usar?",
+        "Desparasitación para cachorros", "Pulgas y garrapatas",
+        "¿Cómo eliminar parásitos?", "Desparasitación externa"
+      ],
+      "responses": [
+        "Desparasitación interna: cada 3-6 meses, Externa: mensual según producto. Cachorros necesitan esquema especial. ¿Tu mascota tiene síntomas específicos?",
+        "Recomendamos desparasitación interna trimestral y protección externa mensual contra pulgas/garrapatas"
+      ]
+    },
+    {
+      "tag": "esterilizacion",
+      "patterns": [
+        "¿Recomiendan esterilizar?", "Castración", "Esterilización de gatos",
+        "Operación de perros", "¿A qué edad esterilizar?",
+        "Costo de esterilización", "Recuperación post-operatoria",
+        "Beneficios de esterilizar"
+      ],
+      "responses": [
+        "Sí recomendamos esterilización. Edad ideal: 6-9 meses. Beneficios: Previene enfermedades y camas no deseadas. Costo: $150-300 según tamaño",
+        "La esterilización es muy beneficiosa. Prevenimos cánceres y problemas de comportamiento. ¿Qué mascota quieres esterilizar?"
+      ]
+    },
+    {
+      "tag": "urgencias_comunes",
+      "patterns": [
+        "Comió chocolate", "Se tragó un objeto", "Envenenamiento",
+        "Quemadura", "Golpe de calor", "Convulsiones",
+        "Parto complicado", "Fractura", "Herida profunda"
+      ],
+      "responses": [
+        "🚨 ESTO ES URGENTE: Llama inmediatamente al 555-EMERGENCIA. No esperes, cada minuto cuenta",
+        "¡Emergencia! Contacta urgencias al 555-EMERGENCIA de inmediato. Mientras, mantén la calma y no le des medicamentos"
+      ]
+    },
+    {
+      "tag": "cuidados_basicos",
+      "patterns": [
+        "Cuidados para cachorro", "Cómo bañar a mi mascota",
+        "Corte de uñas", "Limpieza dental", "Cepillado",
+        "Ejercicio para perros", "Juguetes recomendados",
+        "Educación básica"
+      ],
+      "responses": [
+        "Cuidados básicos: Baño cada 3-4 semanas, cepillado dental regular, ejercicio diario, y mucho amor. ¿Qué aspecto específico te interesa?",
+        "Para cachorros: Socialización temprana, vacunación completa, alimentación especial. ¿Necesitas consejos específicos?"
+      ]
+    },
+    {
+      "tag": "agradecimiento",
+      "patterns": [
+        "Gracias", "Muchas gracias", "Te agradezco", "Muy amable",
+        "Excelente ayuda", "Perfecto, gracias", "Thanks",
+        "Me ayudaste mucho", "Agradecido"
+      ],
+      "responses": [
+        "¡De nada! Estoy aquí para ayudarte siempre que lo necesites",
+        "¡Es un placer ayudar! ¿Necesitas algo más?",
+        "¡Gracias a ti! Cuenta conmigo para lo que necesites"
+      ]
+    },
+    {
+      "tag": "ubicacion",
+      "patterns": [
+        "¿Dónde están ubicados?", "Dirección", "¿Cómo llegar?",
+        "Ubicación de la veterinaria", "¿En qué ciudad están?",
+        "¿Tienen varias sucursales?", "Mapa"
+      ],
+      "responses": [
+        "Estamos en Av. Principal #123, Ciudad. Tenemos estacionamiento gratuito. ¿Necesitas indicaciones específicas?",
+        "Nos encuentras en: Av. Principal #123, Ciudad. Abrimos de Lunes a Sábado"
+      ]
+    }
+  ]
+}

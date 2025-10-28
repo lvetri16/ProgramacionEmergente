@@ -1,0 +1,180 @@
+{
+  "intents": {
+    "saludo": {
+      "patterns": ["hola", "buenos dias", "buenas tardes", "buenas noches", "que tal", "saludos", "hey", "ola"],
+      "responses": [
+        "¡Hola! Bienvenido a VetCare. ¿En qué puedo ayudarte hoy?",
+        "¡Hola! Soy el asistente virtual de VetCare. ¿Cómo puedo asistirte?",
+        "¡Bienvenido! Estoy aquí para ayudarte con cualquier consulta sobre nuestros servicios veterinarios."
+      ]
+    },
+    "despedida": {
+      "patterns": ["adios", "hasta luego", "nos vemos", "chao", "bye", "gracias", "eso es todo"],
+      "responses": [
+        "¡Hasta pronto! Cuida mucho a tu mascota. 🐾",
+        "¡Adiós! No dudes en contactarnos si necesitas algo más.",
+        "¡Que tengas un excelente día! Estamos aquí cuando nos necesites."
+      ]
+    },
+    "horarios": {
+      "patterns": [
+        "horario",
+        "que hora abren",
+        "cuando abren",
+        "hora de atencion",
+        "horario de atencion",
+        "a que hora",
+        "cuando cierran"
+      ],
+      "responses": [
+        "Nuestro horario de atención es:\n• Lunes a Viernes: 8:00 AM - 8:00 PM\n• Sábados: 9:00 AM - 6:00 PM\n• Domingos: 10:00 AM - 4:00 PM\n\n¡Contamos con servicio de emergencias 24/7!",
+        "Estamos abiertos de lunes a viernes de 8:00 AM a 8:00 PM, sábados de 9:00 AM a 6:00 PM y domingos de 10:00 AM a 4:00 PM. Para emergencias, estamos disponibles las 24 horas."
+      ]
+    },
+    "servicios": {
+      "patterns": [
+        "servicios",
+        "que servicios ofrecen",
+        "que hacen",
+        "tratamientos",
+        "que pueden hacer",
+        "servicios disponibles"
+      ],
+      "responses": [
+        "En VetCare ofrecemos:\n• Consultas generales\n• Vacunación\n• Cirugía\n• Emergencias 24/7\n• Farmacia veterinaria\n• Laboratorio y análisis clínicos\n• Hospitalización\n• Grooming\n\n¿Sobre cuál servicio te gustaría saber más?",
+        "Contamos con servicios completos: consultas, vacunación, cirugías, emergencias, laboratorio, farmacia y más. ¿Hay algún servicio específico que te interese?"
+      ]
+    },
+    "consulta": {
+      "patterns": ["consulta", "revision", "chequeo", "examinar", "ver a mi mascota", "consulta general"],
+      "responses": [
+        "Las consultas generales incluyen examen físico completo, diagnóstico y recomendaciones. El costo es de $10 USD. ¿Te gustaría agendar una cita?",
+        "Nuestras consultas incluyen revisión física y plan de tratamiento personalizado por $10 USD. ¿Deseas programar una cita?"
+      ]
+    },
+    "vacunacion": {
+      "patterns": ["vacuna", "vacunas", "vacunacion", "inmunizacion", "que vacunas", "calendario de vacunas"],
+      "responses": [
+        "💉 Programas de vacunación:\n\n🐕 Perros: Parvovirus, Moquillo, Hepatitis, Rabia\n🐱 Gatos: Panleucopenia, Rinotraqueitis, Calicivirus, Rabia\n\nPrecios desde $8 USD por vacuna. ¿Tu mascota está al día con sus vacunas?",
+        "Ofrecemos vacunas para perros y gatos desde $8 USD cada una. Incluyen control veterinario y carnet de vacunación."
+      ]
+    },
+    "cirugia": {
+      "patterns": ["cirugia", "operacion", "quirurgico", "esterilizacion", "castracion", "operar"],
+      "responses": [
+        "Realizamos diversos procedimientos quirúrgicos:\n• Esterilización/Castración\n• Cirugías de tejidos blandos\n• Cirugías ortopédicas\n• Cirugías de emergencia\n\nTodos nuestros procedimientos incluyen anestesia, monitoreo y cuidado post-operatorio. ¿Qué tipo de cirugía necesitas?",
+        "Contamos con quirófano equipado y cirujanos especializados. Realizamos desde esterilizaciones hasta cirugías complejas. ¿Sobre qué procedimiento te gustaría información?"
+      ]
+    },
+    "emergencia": {
+      "patterns": ["emergencia", "urgente", "ayuda", "mi mascota esta mal", "accidente", "envenenamiento"],
+      "responses": [
+        "🚨 EMERGENCIAS 24/7: Llama al +58 414-555-4321 o acude directamente a nuestra clínica.\n\nAtendemos casos de:\n• Dificultad respiratoria\n• Sangrado\n• Convulsiones\n• Envenenamiento\n• Accidentes\n\n¡Ven sin cita previa!",
+        "🚑 Emergencias 24/7 disponibles al +58 414-555-4321. Si tu mascota está en peligro, acude inmediatamente o llámanos."
+      ]
+    },
+    "precio": {
+      "patterns": ["precio", "costo", "cuanto cuesta", "cuanto sale", "tarifas", "precios"],
+      "responses": [
+        "💰 Nuestros precios aproximados:\n• Consulta general: $10 USD\n• Vacunas: desde $8 USD\n• Desparasitación: $5 USD\n• Esterilización: desde $50 USD\n• Corte y baño: $15 USD\n• Laboratorio: desde $10 USD\n\nLos precios pueden variar según el caso. ¿Qué servicio te interesa?",
+        "Ofrecemos precios justos y en dólares. Consulta: $10 USD, vacunas desde $8 USD, grooming $15 USD. ¿Sobre qué servicio deseas más información?"
+      ]
+    },
+    "cita": {
+      "patterns": ["cita", "agendar", "reservar", "turno", "programar", "hacer cita"],
+      "responses": [
+        "📅 Para agendar tu cita puedes:\n1. Llamar al +58 212-555-6789\n2. Enviar WhatsApp al +58 414-555-6789\n3. Rellenar el formulario en nuestra web\n\nSolo necesitamos:\n• Tu nombre\n• Nombre de tu mascota\n• Motivo de la cita\n• Día y hora preferida\n\n¿Deseas que te ayude a coordinarla por aquí?",
+        "Puedes agendar tu cita por teléfono al +58 212-555-6789 o por WhatsApp al +58 414-555-6789. También puedo ayudarte aquí mismo."
+      ]
+    },
+    "ubicacion": {
+      "patterns": ["donde estan", "ubicacion", "direccion", "como llegar", "donde quedan", "domicilio"],
+      "responses": [
+        "📍 Estamos en:\nAv. Francisco de Miranda, Centro Comercial Los Ruices, Nivel PB, Caracas, Venezuela.\n\n🚗 Contamos con estacionamiento y fácil acceso por metro (estación Los Cortijos).",
+        "Nuestra clínica se encuentra en Caracas, Av. Francisco de Miranda, CC Los Ruices. ¡Fácil de llegar y con estacionamiento!"
+      ]
+    },
+    "contacto": {
+      "patterns": ["contacto", "telefono", "email", "correo", "como contactarlos", "numero"],
+      "responses": [
+        "📞 Puedes contactarnos por:\n• Teléfono: +58 212-555-6789\n• Emergencias: +58 414-555-4321\n• WhatsApp: +58 414-555-6789\n• Email: contacto@vetcare.com.ve",
+        "Nuestros canales de contacto son:\n📱 WhatsApp: +58 414-555-6789\n📧 Email: contacto@vetcare.com.ve\n📞 Teléfono fijo: +58 212-555-6789"
+      ]
+    },
+    "equipo": {
+      "patterns": ["veterinarios", "doctores", "equipo", "quien atiende", "medicos", "staff"],
+      "responses": [
+        "Nuestro equipo está conformado por:\n\n👩‍⚕️ Dra. María González - Directora Médica (Medicina Interna)\n👨‍⚕️ Dr. Carlos Ramírez - Cirujano Veterinario\n👩‍⚕️ Dra. Ana Martínez - Especialista en Dermatología\n👨‍⚕️ Dr. Luis Torres - Especialista en Emergencias\n\nTodos nuestros veterinarios están certificados y tienen amplia experiencia.",
+        "Contamos con un equipo de 4 veterinarios especializados en diferentes áreas: medicina interna, cirugía, dermatología y emergencias. Todos con certificación profesional."
+      ]
+    },
+    "especies": {
+      "patterns": [
+        "que animales",
+        "atienden gatos",
+        "atienden perros",
+        "mascotas exoticas",
+        "que mascotas",
+        "especies"
+      ],
+      "responses": [
+        "Atendemos principalmente:\n🐕 Perros\n🐱 Gatos\n🐰 Conejos\n🐹 Roedores pequeños\n🐦 Aves\n\nPara mascotas exóticas, contamos con especialistas. ¿Qué tipo de mascota tienes?",
+        "Atendemos perros, gatos, conejos, roedores y aves. Para especies exóticas, tenemos veterinarios especializados. ¿Cuál es tu mascota?"
+      ]
+    },
+    "pagos": {
+      "patterns": ["formas de pago", "como pagar", "aceptan tarjeta", "efectivo", "metodos de pago"],
+      "responses": [
+        "Aceptamos múltiples formas de pago:\n💵 Efectivo\n💳 Tarjetas de crédito y débito\n📱 Transferencias bancarias\n💰 Pagos en parcialidades (cirugías)\n\nTambién trabajamos con algunos seguros para mascotas.",
+        "Puedes pagar en efectivo, tarjeta o transferencia. Para cirugías ofrecemos planes de pago. También aceptamos algunos seguros veterinarios."
+      ]
+    }
+  },
+  "entities": {
+    "animal_type": {
+      "perro": ["perro", "perros", "can", "canino", "cachorro"],
+      "gato": ["gato", "gatos", "felino", "gatito", "minino"],
+      "conejo": ["conejo", "conejos"],
+      "ave": ["ave", "aves", "pajaro", "pajaros"],
+      "roedor": ["hamster", "cobayo", "raton", "rata", "roedor"]
+    },
+    "urgency": {
+      "alta": ["urgente", "emergencia", "grave", "critico", "inmediato"],
+      "media": ["pronto", "rapido", "necesito"],
+      "baja": ["cuando pueda", "no urgente", "consulta"]
+    }
+  },
+  "rules": {
+    "emergencia": {
+      "conditions": [
+        {
+          "entity": "urgency",
+          "values": {
+            "alta": "🚨 EMERGENCIA DETECTADA 🚨\nPor favor, llama inmediatamente al +58 414-555-4321 o acude directamente a nuestra clínica en Caracas.\nEstamos disponibles 24/7 para atender urgencias veterinarias."
+          }
+        }
+      ],
+      "default_response": "Para emergencias, llama al +58 414-555-4321. Servicio 24/7 disponible."    
+    },
+    "especies": {
+      "conditions": [
+        {
+          "entity": "animal_type",
+          "values": {
+            "perro": "¡Excelente! Tenemos amplia experiencia con perros. Ofrecemos consultas, vacunación, cirugías y todos los servicios que tu perro necesita. ¿Qué necesita tu perro?",
+            "gato": "¡Perfecto! Somos especialistas en gatos. Ofrecemos desde consultas hasta cirugías especializadas para felinos. ¿En qué podemos ayudar a tu gato?",
+            "conejo": "Atendemos conejos con veterinarios especializados en animales pequeños. ¿Qué necesita tu conejo?",
+            "ave": "Contamos con especialistas en aves. ¿Qué tipo de ave tienes y qué necesitas?",
+            "roedor": "Atendemos roedores pequeños con cuidado especializado. ¿Qué necesita tu mascota?"
+          }
+        }
+      ]
+    }
+  },
+  "fallback_responses": [
+    "Disculpa, no estoy seguro de entender. ¿Podrías reformular tu pregunta? Puedo ayudarte con información sobre servicios, horarios, precios, citas y más.",
+    "No entendí bien tu pregunta. ¿Te gustaría saber sobre nuestros servicios, horarios, precios o agendar una cita?",
+    "Perdona, no comprendí. Puedo ayudarte con: servicios veterinarios, horarios, precios, citas, ubicación y contacto. ¿Sobre qué necesitas información?",
+    "Lo siento, no pude procesar eso. ¿Necesitas información sobre servicios, agendar una cita, o conocer nuestros horarios?"
+  ]
+}
