@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clasificador de Perros y Gatos</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 2rem 0;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: none;
+            transition: transform 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+        .result-container {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .result-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .cat-result {
+            color: #ff6b6b;
+        }
+        .dog-result {
+            color: #4ecdc4;
+        }
+        .image-preview {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 10px;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .upload-area {
+            border: 2px dashed #6c757d;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            margin-bottom: 1rem;
+        }
+        .upload-area:hover {
+            border-color: #2575fc;
+            background-color: #e9ecef;
+        }
+        .model-status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .model-loading {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .model-ready {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .model-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .confidence-bar {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .confidence-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .debug-info {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-2 text-center">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2F0Ij48cGF0aCBkPSJNMTIgNWMuNjcgMCAxLjM1LjA5IDIgLjI2IDEuNzgtMiA0LjY1LTIuNzUgNy4zOC0uMjVBMTEuOTUgMTEuOTUgMCAwIDEgMjIgMTBjMCAzLjY0LTQuMjQgNi44Ny05LjkgMTAuOC01LjY2LTMuOTMtOS45LTcuMTYtOS45LTEwLjhhMTEuOTUgMTEuOTUgMCAwIDEgLjYyLTVuMDVBMTAuNDMgMTAuNDMgMCAwIDEgMTIgNXoiPjwvcGF0aD48bGluZSB4MT0iOCIgeTE9IjEzIiB4Mj0iMTYiIHkyPSIxMyI+PC9saW5lPjxsaW5lIHgxPSI5IiB5MT0iMTYiIHgyPSI5LjAxIiB5Mj0iMTYiPjwvbGluZT48bGluZSB4MT0iMTUiIHkxPSIxNiIgeDI9IjE1LjAxIiB5Mj0iMTYiPjwvbGluZT48L3N2Zz4=" alt="Logo" width="80" height="80">
+                </div>
+                <div class="col-md-10">
+                    <h1 class="display-4 fw-bold">Clasificador de Perros y Gatos</h1>
+                    <p class="lead mb-0">Sube una imagen o pégala desde el portapapeles</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Estado del modelo -->
+                <div id="modelStatus" class="model-status model-loading">
+                    <div class="spinner-border spinner-border-sm" role="status"></div>
+                    Cargando modelo...
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Subir Imagen</h3>
+                        
+                        <div class="upload-area" id="uploadArea">
+                            <div class="mb-3">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <h4>Arrastra y suelta una imagen aquí</h4>
+                                <p class="text-muted">o haz clic para seleccionar un archivo</p>
+                            </div>
+                            <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        </div>
+                        
+                        <div class="text-center">
+                            <button class="btn btn-primary" id="analyzeButton" disabled>Analizar Imagen</button>
+                        </div>
+                        
+                        <div class="loading text-center" id="loadingIndicator" style="display: none;">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                            <p class="mt-2">Analizando imagen...</p>
+                        </div>
+
+                        <!-- Información de depuración -->
+                        <div id="debugInfo" class="debug-info"></div>
+                    </div>
+                </div>
+                
+                <div class="result-container" id="resultContainer" style="display: none;">
+                    <h3>Resultado del Análisis</h3>
+                    <div class="mb-4">
+                        <img id="previewImage" class="image-preview" alt="Vista previa">
+                    </div>
+                    <div class="result-text" id="resultText"></div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceBar"></div>
+                    </div>
+                    <p id="confidenceText" class="text-muted"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    
+    <script>
+        // Variables globales
+        let modelo = null;
+        let imagenActual = null;
+        
+        // Elementos del DOM
+        const modelStatus = document.getElementById('modelStatus');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const analyzeButton = document.getElementById('analyzeButton');
+        const previewImage = document.getElementById('previewImage');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultText = document.getElementById('resultText');
+        const confidenceBar = document.getElementById('confidenceBar');
+        const confidenceText = document.getElementById('confidenceText');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const debugInfo = document.getElementById('debugInfo');
+
+        function agregarDebug(mensaje) {
+            debugInfo.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${mensaje}</div>`;
+            console.log(mensaje);
+        }
+
+        function actualizarEstadoModelo(estado, mensaje) {
+            modelStatus.className = `model-status model-${estado}`;
+            modelStatus.innerHTML = mensaje;
+        }
+
+        async function cargarModeloManual() {
+            console.log("Cargando modelo manualmente...");
+            actualizarEstadoModelo('loading', 'Cargando pesos del modelo...');
+            
+            try {
+                const pesosManifest = [
+                    {
+                        paths: [
+                            'group1-shard1of4.bin',
+                            'group1-shard2of4.bin', 
+                            'group1-shard3of4.bin',
+                            'group1-shard4of4.bin'
+                        ],
+                        weights: [
+                            {name: "sequential/conv2d/kernel", shape: [3, 3, 1, 32], dtype: "float32"},
+                            {name: "sequential/conv2d/bias", shape: [32], dtype: "float32"},
+                            {name: "sequential/conv2d_1/kernel", shape: [3, 3, 32, 64], dtype: "float32"},
+                            {name: "sequential/conv2d_1/bias", shape: [64], dtype: "float32"},
+                            {name: "sequential/conv2d_2/kernel", shape: [3, 3, 64, 128], dtype: "float32"},
+                            {name: "sequential/conv2d_2/bias", shape: [128], dtype: "float32"},
+                            {name: "sequential/dense/kernel", shape: [12800, 250], dtype: "float32"},
+                            {name: "sequential/dense/bias", shape: [250], dtype: "float32"},
+                            {name: "sequential/dense_1/kernel", shape: [250, 1], dtype: "float32"},
+                            {name: "sequential/dense_1/bias", shape: [1], dtype: "float32"}
+                        ]
+                    }
+                ];
+
+                actualizarEstadoModelo('loading', 'Descargando pesos...');
+                const pesos = await tf.io.loadWeights(pesosManifest, '.');
+                
+                console.log("Pesos cargados:", Object.keys(pesos));
+                actualizarEstadoModelo('loading', 'Construyendo modelo...');
+
+                const modeloManual = tf.sequential();
+                
+                modeloManual.add(tf.layers.conv2d({
+                    inputShape: [100, 100, 1],
+                    filters: 32,
+                    kernelSize: 3,
+                    activation: 'relu',
+                    name: 'conv2d'
+                }));
+                
+                modeloManual.add(tf.layers.maxPooling2d({
+                    poolSize: 2,
+                    name: 'max_pooling2d'
+                }));
+                
+                modeloManual.add(tf.layers.conv2d({
+                    filters: 64,
+                    kernelSize: 3,
+                    activation: 'relu',
+                    name: 'conv2d_1'
+                }));
+                
+                modeloManual.add(tf.layers.maxPooling2d({
+                    poolSize: 2,
+                    name: 'max_pooling2d_1'
+                }));
+                
+                modeloManual.add(tf.layers.conv2d({
+                    filters: 128,
+                    kernelSize: 3,
+                    activation: 'relu',
+                    name: 'conv2d_2'
+                }));
+                
+                modeloManual.add(tf.layers.maxPooling2d({
+                    poolSize: 2,
+                    name: 'max_pooling2d_2'
+                }));
+                
+                modeloManual.add(tf.layers.dropout({
+                    rate: 0.5,
+                    name: 'dropout'
+                }));
+                
+                modeloManual.add(tf.layers.flatten({
+                    name: 'flatten'
+                }));
+                
+                modeloManual.add(tf.layers.dense({
+                    units: 250,
+                    activation: 'relu',
+                    name: 'dense'
+                }));
+                
+                modeloManual.add(tf.layers.dense({
+                    units: 1,
+                    activation: 'sigmoid',
+                    name: 'dense_1'
+                }));
+
+                actualizarEstadoModelo('loading', 'Asignando pesos...');
+                
+                const nombresCapas = [
+                    'conv2d', 'conv2d_1', 'conv2d_2', 
+                    'dense', 'dense_1'
+                ];
+                
+                for (const nombreCapa of nombresCapas) {
+                    const kernelKey = `sequential/${nombreCapa}/kernel`;
+                    const biasKey = `sequential/${nombreCapa}/bias`;
+                    
+                    if (pesos[kernelKey]) {
+                        const capa = modeloManual.getLayer(nombreCapa);
+                        capa.setWeights([
+                            pesos[kernelKey],
+                            pesos[biasKey] || tf.zeros([capa.units || capa.filters])
+                        ]);
+                    }
+                }
+
+                console.log("Modelo construido manualmente:");
+                modeloManual.summary();
+                
+                actualizarEstadoModelo('ready', '✅ Modelo cargado correctamente');
+                return modeloManual;
+                
+            } catch (error) {
+                console.error("Error al cargar modelo manual:", error);
+                throw error;
+            }
+        }
+
+        async function cargarModelo() {
+            try {
+                actualizarEstadoModelo('loading', 'Intentando carga automática...');
+                modelo = await tf.loadLayersModel('model.json');
+                console.log("Modelo cargado automáticamente");
+            } catch (error) {
+                console.log("Carga automática falló, intentando carga manual:", error.message);
+                
+                modelo = await cargarModeloManual();
+            }
+            
+            analyzeButton.disabled = false;
+            actualizarEstadoModelo('ready', '✅ Modelo listo para usar');
+        }
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                procesarImagen(e.target.files[0]);
+            }
+        });
+        
+        document.addEventListener('paste', (e) => {
+            const items = e.clipboardData.items;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    const blob = items[i].getAsFile();
+                    procesarImagen(blob);
+                    break;
+                }
+            }
+        });
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            if (e.dataTransfer.files.length > 0) {
+                procesarImagen(e.dataTransfer.files[0]);
+            }
+        });
+        
+        analyzeButton.addEventListener('click', () => {
+            if (imagenActual) {
+                analizarImagen(imagenActual);
+            }
+        });
+        
+        function procesarImagen(archivo) {
+            agregarDebug(`Procesando imagen: ${archivo.name}`);
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    const maxSize = 300;
+                    let width = img.width;
+                    let height = img.height;
+                    
+                    if (width > height) {
+                        if (width > maxSize) {
+                            height = Math.round((height * maxSize) / width);
+                            width = maxSize;
+                        }
+                    } else {
+                        if (height > maxSize) {
+                            width = Math.round((width * maxSize) / height);
+                            height = maxSize;
+                        }
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    previewImage.src = canvas.toDataURL('image/jpeg');
+                    imagenActual = img;
+                    
+                    agregarDebug(`Imagen cargada: ${img.width}x${img.height} -> ${width}x${height}`);
+                    
+                    resultContainer.style.display = 'none';
+                };
+                img.src = e.target.result;
+            };
+            
+            reader.readAsDataURL(archivo);
+        }
+        
+        async function analizarImagen(imagen) {
+            if (!modelo) {
+                alert("El modelo aún no se ha cargado. Por favor, espera un momento.");
+                return;
+            }
+            
+            loadingIndicator.style.display = 'block';
+            analyzeButton.disabled = true;
+            agregarDebug("Iniciando análisis de imagen...");
+            
+            try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = 100;
+                canvas.height = 100;
+                
+                ctx.drawImage(imagen, 0, 0, 100, 100);
+                agregarDebug("Imagen redimensionada a 100x100");
+                
+                const imgData = ctx.getImageData(0, 0, 100, 100);
+                agregarDebug(`Datos de imagen obtenidos: ${imgData.data.length} bytes`);
+                
+                const data = [];
+                
+                for (let i = 0; i < imgData.data.length; i += 4) {
+                    const rojo = imgData.data[i] / 255;
+                    const verde = imgData.data[i + 1] / 255;
+                    const azul = imgData.data[i + 2] / 255;
+                    const gris = (rojo + verde + azul) / 3;
+                    data.push(gris);
+                }
+                
+                const shapedData = [];
+                for (let i = 0; i < 100; i++) {
+                    const row = [];
+                    for (let j = 0; j < 100; j++) {
+                        row.push([data[i * 100 + j]]);
+                    }
+                    shapedData.push(row);
+                }
+                
+                agregarDebug(`Datos reformateados: ${shapedData.length}x${shapedData[0].length}x${shapedData[0][0].length}`);
+                
+                const tensor = tf.tensor4d([shapedData]);
+                agregarDebug(`Tensor creado: forma [${tensor.shape}]`);
+                
+                agregarDebug("Realizando predicción...");
+                const resultado = modelo.predict(tensor);
+                const confianza = await resultado.dataSync()[0];
+                
+                agregarDebug(`Predicción completada: ${confianza}`);
+                
+                mostrarResultado(confianza);
+                
+                tensor.dispose();
+                resultado.dispose();
+                
+            } catch (error) {
+                console.error("Error al analizar la imagen:", error);
+                agregarDebug(`ERROR: ${error.message}`);
+                alert("Error al analizar la imagen: " + error.message);
+            } finally {
+                // Ocultar indicador de carga
+                loadingIndicator.style.display = 'none';
+                analyzeButton.disabled = false;
+            }
+        }
+        
+        function mostrarResultado(confianza) {
+            let clase = "";
+            let textoClase = "";
+            let porcentaje = 0;
+            
+            if (confianza <= 0.5) {
+                clase = "cat-result";
+                textoClase = "Gato";
+                porcentaje = (1 - confianza) * 100;
+            } else {
+                clase = "dog-result";
+                textoClase = "Perro";
+                porcentaje = confianza * 100;
+            }
+            
+            resultText.textContent = textoClase;
+            resultText.className = `result-text ${clase}`;
+            
+            confidenceBar.style.width = `${porcentaje}%`;
+            confidenceBar.style.backgroundColor = clase === "cat-result" ? "#ff6b6b" : "#4ecdc4";
+            
+            confidenceText.textContent = `Confianza: ${porcentaje.toFixed(2)}%`;
+            
+            resultContainer.style.display = 'block';
+            
+            agregarDebug(`Resultado: ${textoClase} (${porcentaje.toFixed(2)}%)`);
+
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarModelo);
+    </script>
+</body>
+</html>
